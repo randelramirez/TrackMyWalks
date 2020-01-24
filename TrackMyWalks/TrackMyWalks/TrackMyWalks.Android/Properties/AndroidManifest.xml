@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.trackmywalks" android:installLocation="auto">
+	<uses-sdk android:minSdkVersion="20" android:targetSdkVersion="29" />
+	<application>
+		<meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyBvzUFqB3eowjL2W3mo29bAfuwBDmcl9yg" />
+		<uses-library android:name="org.apache.http.legacy" android:required="false" />
+	</application>
+	<application android:label="TrackMyWalks.Android"></application>
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+</manifest>

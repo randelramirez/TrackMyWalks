@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TrackMyWalks.Views.WalksMainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Clicked="AddWalk_Clicked" Text="Add" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView
+                x:Name="WalkEntriesListView"
+                CachingStrategy="RetainElement"
+                HasUnevenRows="true"
+                ItemTapped="myWalkEntries_ItemTapped"
+                RowHeight="80"
+                SeparatorColor="#ddd">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <!--<ImageCell Detail="{Binding Description}" Text="{Binding Title}">
+                        -->
+                        <!--  Use UriImage Source  -->
+                        <!--
+                            <ImageCell.ImageSource>
+                                <UriImageSource Uri="{Binding ImageUrl}" />
+                            </ImageCell.ImageSource>
+                        </ImageCell>-->
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem
+                                    Clicked="OnEditItem"
+                                    CommandParameter="{Binding .}"
+                                    IsDestructive="False"
+                                    Text="Edit" />
+                                <MenuItem
+                                    Clicked="OnDeleteItem"
+                                    CommandParameter="{Binding .}"
+                                    IsDestructive="True"
+                                    Text="Delete" />
+                            </ViewCell.ContextActions>
+                            <StackLayout
+                                x:Name="cellLayout"
+                                Padding="10,5,10,5"
+                                HorizontalOptions="FillAndExpand"
+                                Orientation="Horizontal">
+                                <!--
+                                    For image in a listview that uses a binding the https is being replace to http,
+                                    for thi we need to change Android's HttpClient Implementation to Managed
+                                -->
+                                <Image
+                                    Aspect="AspectFit"
+                                    HeightRequest="80"
+                                    WidthRequest="80"
+                                    Source="{Binding ImageUrl}"
+                                    VerticalOptions="FillAndExpand">
+                                </Image>
+                                <StackLayout
+                                    x:Name="DetailsLayout"
+                                    Padding="10,0,0,0"
+                                    HorizontalOptions="FillAndExpand">
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="16"
+                                        Text="{Binding Title}"
+                                        TextColor="Black" />
+                                    <Label
+                                        FontAttributes="None"
+                                        FontSize="12"
+                                        Text="{Binding Description}"
+                                        TextColor="Blue" />
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

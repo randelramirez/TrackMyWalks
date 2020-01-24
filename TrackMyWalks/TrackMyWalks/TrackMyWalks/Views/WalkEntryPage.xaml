@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TrackMyWalks.Views.WalkEntryPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Clicked="SaveWalkItem_Clicked" Text="Save" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <TableView Intent="Form">
+                <TableView.Root>
+                    <TableSection Title="Enter Walk Trail Information">
+                        <EntryCell
+                            Label="Title:"
+                            Placeholder="Provide a Title for this trail"
+                            Text="{Binding Title, Mode=TwoWay}" />
+                        <EntryCell
+                            Label="Description:"
+                            Placeholder="Provide trail description"
+                            Text="{Binding Description, Mode=TwoWay}" />
+                        <EntryCell
+                            Keyboard="Numeric"
+                            Label="Latitude:"
+                            Placeholder="Provide latitude coordinates"
+                            Text="{Binding Latitude, Mode=TwoWay}" />
+                        <EntryCell
+                            Keyboard="Numeric"
+                            Label="Longitude:"
+                            Placeholder="Provide longitude coordinates"
+                            Text="{Binding Longitude, Mode=TwoWay}" />
+                        <EntryCell
+                            Keyboard="Numeric"
+                            Label="Distance:"
+                            Placeholder="Provide trail distance"
+                            Text="{Binding Distance, Mode=TwoWay}" />
+                        <ViewCell>
+                            <StackLayout Margin="15,0" Orientation="Horizontal">
+                                <Label Text="Trail Difficulty Level:" VerticalOptions="Center" />
+                                <Picker
+                                    Title="Choose Difficulty"
+                                    HorizontalOptions="FillAndExpand"
+                                    SelectedItem="{Binding Difficulty, Mode=TwoWay}"
+                                    VerticalOptions="Center">
+                                    <Picker.ItemsSource>
+                                        <x:Array Type="{x:Type x:String}">
+                                            <x:String>Easy</x:String>
+                                            <x:String>Medium</x:String>
+                                            <x:String>Hard</x:String>
+                                            <x:String>Extreme</x:String>
+                                        </x:Array>
+                                    </Picker.ItemsSource>
+                                </Picker>
+                            </StackLayout>
+                        </ViewCell>
+                        <EntryCell
+                            Label="Image URL:"
+                            Placeholder="Provide an Image URL"
+                            Text="{Binding ImageUrl, Mode=TwoWay}" />
+                    </TableSection>
+                </TableView.Root>
+            </TableView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

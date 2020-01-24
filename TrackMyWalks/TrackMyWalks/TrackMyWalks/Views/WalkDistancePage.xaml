@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="TrackMyWalks.Views.WalkDistancePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <ContentPage.Content>
+        <StackLayout>
+            <ScrollView Padding="2,0,2,2">
+                <StackLayout
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Vertical"
+                    VerticalOptions="FillAndExpand">
+                    <maps:Map
+                        HeightRequest="200"
+                        x:Name="customMap"
+                        IsShowingUser="true"
+                        MapType="Street" />
+                    <Button
+                        x:Name="EndThisTrail"
+                        Margin="20"
+                        BackgroundColor="#008080"
+                        Clicked="EndThisTrailButton_Clicked"
+                        Text="End this Trail"
+                        TextColor="White" />
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
