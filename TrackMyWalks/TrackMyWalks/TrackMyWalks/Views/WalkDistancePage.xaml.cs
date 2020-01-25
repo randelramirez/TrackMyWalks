@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TrackMyWalks.Services;
 using TrackMyWalks.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
@@ -22,7 +23,7 @@ namespace TrackMyWalks.Views
 
             // Update the Title and Initialise our BindingContext for the Page
             Title = "Distance Travelled Information";
-            this.BindingContext = new WalkDistancePageViewModel();
+            this.BindingContext = new WalkDistancePageViewModel(DependencyService.Get<INavigationService>());
 
 
             // Create a pin placeholder within the map containing the
@@ -43,10 +44,10 @@ namespace TrackMyWalks.Views
         }
 
         // Instance method that ends the current trail and returns back to the main screen.
-        public void EndThisTrailButton_Clicked(object sender, EventArgs e)
+        public async void EndThisTrailButton_Clicked(object sender, EventArgs e)
         {
             App.SelectedItem = null;
-            Navigation.PopToRootAsync(true);
+            await _viewModel.Navigation.BackToMainPage();
         }
     }
 }

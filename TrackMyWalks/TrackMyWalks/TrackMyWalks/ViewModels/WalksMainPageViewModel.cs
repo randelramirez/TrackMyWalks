@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 using TrackMyWalks.Models;
+using TrackMyWalks.Services;
 
 namespace TrackMyWalks.ViewModels
 {
@@ -11,7 +12,7 @@ namespace TrackMyWalks.ViewModels
     {
         // Create our WalksListModel Observable Collection
         public ObservableCollection<WalkDataModel> WalksListModel;
-        public WalksMainPageViewModel()
+        public WalksMainPageViewModel(INavigationService navService) : base(navService)
         {
         }
         // Instance method to add and retrieve our Walk Trail items

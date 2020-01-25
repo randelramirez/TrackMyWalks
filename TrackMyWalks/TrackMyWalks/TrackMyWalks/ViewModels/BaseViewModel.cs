@@ -4,11 +4,13 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using TrackMyWalks.Services;
 
 namespace TrackMyWalks.ViewModels
 {
     public abstract class BaseViewModel : INotifyPropertyChanged
     {
+        public INavigationService Navigation { get; set; }
         public const string PageTitlePropertyName = "PageTitle";
         string pageTitle;
 
@@ -17,8 +19,10 @@ namespace TrackMyWalks.ViewModels
             get => pageTitle;
             set { pageTitle = value; OnPropertyChanged(); }
         }
-        protected BaseViewModel()
+
+        protected BaseViewModel(INavigationService navService)
         {
+            Navigation = navService;
         }
 
         public abstract Task Init();
@@ -37,7 +41,7 @@ namespace TrackMyWalks.ViewModels
 
     public abstract class BaseViewModel<TParam> : BaseViewModel
     {
-        protected BaseViewModel()
+        protected BaseViewModel(INavigationService navService) : base(navService)
         {
         }
     }

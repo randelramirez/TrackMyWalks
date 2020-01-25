@@ -5,7 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using TrackMyWalks.Services;
+using TrackMyWalks.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,7 +15,7 @@ namespace TrackMyWalks.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class WalkTrailInfoPage : ContentPage
     {
-        //WalkTrailInfoPageViewModel _viewModel => BindingContext as WalkTrailInfoPageViewModel;
+        WalkTrailInfoPageViewModel _viewModel => BindingContext as WalkTrailInfoPageViewModel;
 
         public WalkTrailInfoPage()
         {
@@ -28,7 +29,7 @@ namespace TrackMyWalks.Views
             // Update the page title for our Walk Information Page
             Title = "Trail Walk Information";
             // Set the Binding Context for our ContentPage
-            this.BindingContext = App.SelectedItem;
+            this.BindingContext = new WalkTrailInfoPageViewModel(DependencyService.Get<INavigationService>());
 
         }
 
@@ -42,8 +43,8 @@ namespace TrackMyWalks.Views
 
             if (App.SelectedItem == null)
                 return;
-            await Navigation.PushAsync(new WalkDistancePage());
-            Navigation.RemovePage(this);
+            await _viewModel.Navigation.NavigateTo<WalkDistancePageViewModel>();
+            //Navigation.RemovePage(this);
         }
     }
 }

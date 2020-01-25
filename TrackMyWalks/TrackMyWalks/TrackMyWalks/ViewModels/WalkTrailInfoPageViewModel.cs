@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using TrackMyWalks.Services;
 
 namespace TrackMyWalks.ViewModels
 {
     public class WalkTrailInfoPageViewModel : BaseViewModel
     {
-        public WalkTrailInfoPageViewModel()
+        public WalkTrailInfoPageViewModel(INavigationService navService) : base(navService)
         {
         }
 
