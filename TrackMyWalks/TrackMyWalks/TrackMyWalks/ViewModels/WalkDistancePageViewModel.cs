@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using TrackMyWalks.Services;
 
 namespace TrackMyWalks.ViewModels
 {
     public class WalkDistancePageViewModel : BaseViewModel
     {
+
+        public WalkDistancePageViewModel(INavigationService navService) : base(navService)
+        {
+        }
 
         // Update each control on the WalkDistancePage with values from our Model
         public string Title => App.SelectedItem.Title;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TrackMyWalks.Services;
 using TrackMyWalks.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -22,7 +23,7 @@ namespace TrackMyWalks.Views
 
             // Update the Title and Initialise our BindingContext for the Page
             Title = "New Walk Entry Page";
-            BindingContext = new WalkEntryPageViewModel();
+            BindingContext = new WalkEntryPageViewModel(DependencyService.Get<INavigationService>());
             SetBinding(TitleProperty, new Binding(BaseViewModel.PageTitlePropertyName));
 
         }
@@ -39,12 +40,12 @@ namespace TrackMyWalks.Views
                     "Title and Description are required.", "OK");
                 else
                     // Navigate back to the Track My Walks Listing page
-                    await Navigation.PopToRootAsync(true);
+                    await _viewModel.Navigation.RemoveViewFromStack();
             }
             else
             {
                 // Navigate back to the Track My Walks Listing page
-                await Navigation.PopToRootAsync(true);
+                await _viewModel.Navigation.RemoveViewFromStack();
             }
         }
     }

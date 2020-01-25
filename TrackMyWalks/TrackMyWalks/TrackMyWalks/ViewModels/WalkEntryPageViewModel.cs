@@ -3,11 +3,31 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using TrackMyWalks.Models;
+using TrackMyWalks.Services;
 
 namespace TrackMyWalks.ViewModels
 {
     public class WalkEntryPageViewModel : BaseViewModel
     {
+        public WalkEntryPageViewModel(INavigationService navService) : base(navService)
+        {
+            // Update the title if we are creating a new Walk Entry
+            if (App.SelectedItem == null)
+            {
+                PageTitle = "Adding Trail Details";
+                App.SelectedItem = new WalkDataModel();
+                // Set the default values when creating a new Trail
+                Title = "New Trail Entry";
+                Difficulty = "Easy";
+                Distance = 1.0;
+            }
+            else
+            {
+                // Otherwise, we must be editing an existing entry
+                PageTitle = "Editing Trail Details";
+            }
+        }
+
         // Update each EntryCell on the WalkEntryPage with values from our Model
         public string Title
         {
@@ -45,26 +65,6 @@ namespace TrackMyWalks.ViewModels
             set { App.SelectedItem.ImageUrl = value; OnPropertyChanged(); }
         }
 
-        public WalkEntryPageViewModel()
-        {
-            // Update the title if we are creating a new Walk Entry
-            if (App.SelectedItem == null)
-            {
-                PageTitle = "Adding Trail Details";
-                App.SelectedItem = new WalkDataModel()
-                {
-                    // Set the default values when creating a new Trail
-                    Title = "New Trail Entry",
-                    Difficulty = "Easy",
-                    Distance = 1.0,
-                };
-            }
-            else
-            {
-                // Otherwise, we must be editing an existing entry
-                PageTitle = "Editing Trail Details";
-            }
-        }
 
         // Checks to see if we have provided a Title and Description
         public bool ValidateFormDetailsAndSave()

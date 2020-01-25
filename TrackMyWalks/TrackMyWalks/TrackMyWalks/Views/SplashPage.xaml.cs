@@ -23,8 +23,15 @@ namespace TrackMyWalks.Views
 
             // Set a wait delay of 3 seconds on our Splash Screen
             await Task.Delay(3000);
-            // Create a new navigation page, using the WalksMainPage
-            Application.Current.MainPage = new NavigationPage(new WalksMainPage());
+            // Update the Main Page and update the NavigationBar
+            // color for our app
+            Application.Current.MainPage = new NavigationPage(new WalksMainPage())
+            {
+                BarBackgroundColor = Color.CadetBlue,
+                BarTextColor = Color.White
+            };
+
+            App.NavService.XFNavigation = Application.Current.MainPage.Navigation;
         }
     }
 }
