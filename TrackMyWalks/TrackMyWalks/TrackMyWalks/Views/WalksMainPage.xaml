@@ -46,31 +46,62 @@
                                 Padding="10,5,10,5"
                                 HorizontalOptions="FillAndExpand"
                                 Orientation="Horizontal">
+                                <StackLayout.Padding>
+                                    <OnPlatform x:TypeArguments="Thickness">
+                                        <On Platform="Android, WinPhone" Value="0,0" />
+                                        <On Platform="iOS" Value="2,2" />
+                                    </OnPlatform>
+                                </StackLayout.Padding>
                                 <!--
                                     For image in a listview that uses a binding the https is being replace to http,
-                                    for thi we need to change Android's HttpClient Implementation to Managed
+                                    for this we need to change Android's HttpClient Implementation to Managed
                                 -->
                                 <Image
-                                    Aspect="AspectFit"
-                                    HeightRequest="80"
-                                    WidthRequest="80"
+                                    Aspect="AspectFill"
+                                    HeightRequest="140"
+                                    HorizontalOptions="FillAndExpand"
                                     Source="{Binding ImageUrl}"
-                                    VerticalOptions="FillAndExpand">
-                                </Image>
+                                    VerticalOptions="FillAndExpand"
+                                    WidthRequest="140" />
                                 <StackLayout
                                     x:Name="DetailsLayout"
-                                    Padding="10,0,0,0"
+                                    Padding="5,0"
                                     HorizontalOptions="FillAndExpand">
+                                    <StackLayout.Padding>
+                                        <OnPlatform x:TypeArguments="Thickness">
+                                            <On Platform="Android, WinPhone" Value="5,0" />
+                                            <On Platform="iOS" Value="5,0" />
+                                        </OnPlatform>
+                                    </StackLayout.Padding>
                                     <Label
                                         FontAttributes="Bold"
-                                        FontSize="16"
                                         Text="{Binding Title}"
-                                        TextColor="Black" />
+                                        TextColor="Black">
+                                        <Label.FontSize>
+                                            <OnPlatform x:TypeArguments="x:Double">
+                                                <On Platform="Android, WinPhone" Value="14" />
+                                                <On Platform="iOS" Value="16" />
+                                            </OnPlatform>
+                                        </Label.FontSize>
+                                    </Label>
                                     <Label
-                                        FontAttributes="None"
+                                        FontAttributes="Bold"
                                         FontSize="12"
-                                        Text="{Binding Description}"
-                                        TextColor="Blue" />
+                                        Text="{Binding Distance, StringFormat='Kilometers: {0} km'}"
+                                        TextColor="#666" />
+                                    <Label
+                                        FontAttributes="Bold"
+                                        FontSize="12"
+                                        Text="{Binding Difficulty, StringFormat='Difficulty: {0}'}"
+                                        TextColor="Black" />
+                                    <StackLayout Orientation="Vertical" Spacing="3">
+                                        <Label
+                                            FontAttributes="None"
+                                            FontSize="12"
+                                            Text="{Binding Description}"
+                                            TextColor="Blue"
+                                            VerticalOptions="FillAndExpand" />
+                                    </StackLayout>
                                 </StackLayout>
                             </StackLayout>
                         </ViewCell>

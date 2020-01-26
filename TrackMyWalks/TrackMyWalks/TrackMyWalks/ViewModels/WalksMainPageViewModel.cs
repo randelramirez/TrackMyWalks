@@ -32,7 +32,7 @@ namespace TrackMyWalks.ViewModels
                     Longitude = 115.0861599,
                     Distance = 7.5,
                     Difficulty = "Medium",
-                    ImageUrl = "http://trailswa.com.au/media/cache/media/images/trails/_mid/FullSizeRender1_600_480_c1.jpg"
+                    ImageUrl = "https://trailswa.com.au/media/cache/media/images/trails/_mid/FullSizeRender1_600_480_c1.jpg"
                 },
                 new WalkDataModel
                 {
@@ -43,7 +43,7 @@ namespace TrackMyWalks.ViewModels
                     Longitude = 117.3560796,
                     Distance = 450,
                     Difficulty = "Hard",
-                    ImageUrl = "http://trailswa.com.au/media/cache/media/images/trails/_mid/Ancient_Empire_534_480_c1.jpg"
+                    ImageUrl = "https://trailswa.com.au/media/cache/media/images/trails/_mid/Ancient_Empire_534_480_c1.jpg"
                 }
             };
         }
