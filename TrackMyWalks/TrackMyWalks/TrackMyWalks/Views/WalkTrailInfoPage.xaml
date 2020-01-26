@@ -8,6 +8,12 @@
     mc:Ignorable="d">
     <ContentPage.Content>
         <StackLayout>
+            <StackLayout.Padding>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="Android, WinPhone" Value="2,0" />
+                    <On Platform="iOS" Value="2,0" />
+                </OnPlatform>
+            </StackLayout.Padding>
             <ScrollView Padding="5,0,2,5">
                 <StackLayout HorizontalOptions="FillAndExpand" Orientation="Vertical">
                     <Image

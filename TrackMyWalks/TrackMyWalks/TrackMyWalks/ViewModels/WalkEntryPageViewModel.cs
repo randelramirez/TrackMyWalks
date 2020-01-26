@@ -82,10 +82,31 @@ namespace TrackMyWalks.ViewModels
             return true;
         }
 
-        public async override Task Init()
+        // Get the current device GPS location Coordinates
+        public async Task GetMyLocation()
         {
-            await Task.Factory.StartNew(() =>
+            // Get the current determined GPS position coordinates
+            // from the device
+            var position = await new LocationService().GetCurrentPosition();
+            if (position == null) return;
+            // If we are Adding a new Walk Entry, update the Latitude
+            // and Longitude Coordinates
+            if (App.SelectedItem.Latitude.Equals(0) &&
+            App.SelectedItem.Longitude.Equals(0))
             {
+                Latitude = position.Latitude;
+                Longitude = position.Longitude;
+            }
+        }
+
+        // Instance method to initialise the WalkEntryPageViewModel
+        public override async Task Init()
+        {
+            await Task.Factory.StartNew(async () =>
+            {
+                // Call our GetMyLocation method to obtain our
+                // GPS Coordinates
+                await GetMyLocation();
             });
         }
     }
