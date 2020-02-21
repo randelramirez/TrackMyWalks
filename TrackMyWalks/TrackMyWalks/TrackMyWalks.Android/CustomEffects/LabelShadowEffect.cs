@@ -26,7 +26,7 @@ namespace TrackMyWalks.Droid.CustomEffects
                 float radius = 5;
                 float distanceX = 4;
                 float distanceY = 4;
-                Android.Graphics.Color color = Color.Teal.ToAndroid();
+                Android.Graphics.Color color = Color.Silver.ToAndroid();
                 control.SetShadowLayer(radius, distanceX, distanceY, color);
             }
             catch (Exception ex)

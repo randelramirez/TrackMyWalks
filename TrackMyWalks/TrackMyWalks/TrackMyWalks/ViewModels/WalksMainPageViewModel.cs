@@ -16,8 +16,15 @@ namespace TrackMyWalks.ViewModels
         {
         }
         // Instance method to add and retrieve our Walk Trail items
-        public void GetWalkTrailItems()
+        public async Task GetWalkTrailItemsAsync()
         {
+            // Check our IsProcessBusy property to see if we are already processing
+            if (IsProcessBusy)
+                return;
+
+            // If we aren't processing, we need to set our IsProcessBusy property to true
+            IsProcessBusy = true;
+
             // Specify our List Collection to store the items being read
             WalksListModel = new ObservableCollection<WalkDataModel>
             {
@@ -46,15 +53,21 @@ namespace TrackMyWalks.ViewModels
                     ImageUrl = "https://trailswa.com.au/media/cache/media/images/trails/_mid/Ancient_Empire_534_480_c1.jpg"
                 }
             };
+
+            // Add a temporary timer, so that we can see our progress indicator working
+            await Task.Delay(3000);
+
+            // Set our IsProcessBusy property value back to false when finished
+            IsProcessBusy = false;
         }
 
         // Instance method to initialise the WalksMainPageViewModel
         public override async Task Init()
         {
-            await Task.Factory.StartNew(() =>
+            await Task.Factory.StartNew(async () =>
             {
                 // Call our GetWalkTrailItems method to populate our collection
-                GetWalkTrailItems();
+                await GetWalkTrailItemsAsync();
             });
         }
     }

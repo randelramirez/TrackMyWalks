@@ -37,6 +37,17 @@ namespace TrackMyWalks.ViewModels
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
+        bool isProcessBusy;
+        public bool IsProcessBusy
+        {
+            get => isProcessBusy;
+            set
+            {
+                isProcessBusy = value;
+                OnPropertyChanged();
+            }
+        }
     }
 
     public abstract class BaseViewModel<TParam> : BaseViewModel
