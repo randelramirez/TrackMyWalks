@@ -6,7 +6,13 @@
     xmlns:customEffect="clr-namespace:TrackMyWalks.CustomEffects"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:valueconverters="clr-namespace:TrackMyWalks.ValueConverters"
     mc:Ignorable="d">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <valueconverters:ImageConverter x:Key="imageConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.ToolbarItems>
         <ToolbarItem Clicked="AddWalk_Clicked" Text="Add" />
     </ContentPage.ToolbarItems>
@@ -99,6 +105,12 @@
                                         Style="{DynamicResource ListItemTextStyle}"
                                         Text="{Binding Difficulty, StringFormat='Difficulty: {0}'}"
                                         TextColor="Black" />
+                                    <Image
+                                        Aspect="AspectFit"
+                                        HeightRequest="50"
+                                        HorizontalOptions="Start"
+                                        Source="{Binding Difficulty, Converter={StaticResource imageConverter}}"
+                                        WidthRequest="50" />
                                     <StackLayout Orientation="Vertical" Spacing="3">
                                         <Label
                                             FontAttributes="None"

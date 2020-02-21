@@ -5,12 +5,17 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:valueConverters="clr-namespace:TrackMyWalks.ValueConverters"
     mc:Ignorable="d">
+
     <ContentPage.ToolbarItems>
         <ToolbarItem Clicked="SaveWalkItem_Clicked" Text="Save" />
     </ContentPage.ToolbarItems>
     <ContentPage.Resources>
         <ResourceDictionary>
+            <ResourceDictionary>
+                <valueConverters:ImageConverter x:Key="imageConverter" />
+            </ResourceDictionary>
             <Style TargetType="Picker">
                 <Setter Property="VerticalOptions" Value="Center" />
                 <Setter Property="HorizontalOptions" Value="FillAndExpand" />
@@ -50,7 +55,13 @@
                             Text="{Binding Distance, Mode=TwoWay}" />
                         <ViewCell>
                             <StackLayout Margin="15,0" Orientation="Horizontal">
-                                <Label Text="Trail Difficulty Level:" VerticalOptions="Center" />
+                                <Label Text="Difficulty:" VerticalOptions="Center" />
+                                <Image
+                                    Aspect="AspectFill"
+                                    HeightRequest="50"
+                                    HorizontalOptions="Start"
+                                    Source="{Binding Difficulty, Converter={StaticResource imageConverter}}"
+                                    WidthRequest="50" />
                                 <Picker
                                     Title="Choose Difficulty"
                                     HorizontalOptions="FillAndExpand"
