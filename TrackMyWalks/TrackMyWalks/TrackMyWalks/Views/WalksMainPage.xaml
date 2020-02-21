@@ -3,6 +3,7 @@
     x:Class="TrackMyWalks.Views.WalksMainPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:customEffect="clr-namespace:TrackMyWalks.CustomEffects"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
@@ -75,6 +76,7 @@
                                     </StackLayout.Padding>
                                     <Label
                                         FontAttributes="Bold"
+                                        Style="{DynamicResource TitleStyle}"
                                         Text="{Binding Title}"
                                         TextColor="Black">
                                         <Label.FontSize>
@@ -83,21 +85,24 @@
                                                 <On Platform="iOS" Value="16" />
                                             </OnPlatform>
                                         </Label.FontSize>
+                                        <Label.Effects>
+                                            <customEffect:LabelShadowEffect />
+                                        </Label.Effects>
                                     </Label>
                                     <Label
                                         FontAttributes="Bold"
-                                        FontSize="12"
+                                        Style="{DynamicResource CaptionStyle}"
                                         Text="{Binding Distance, StringFormat='Kilometers: {0} km'}"
                                         TextColor="#666" />
                                     <Label
                                         FontAttributes="Bold"
-                                        FontSize="12"
+                                        Style="{DynamicResource ListItemTextStyle}"
                                         Text="{Binding Difficulty, StringFormat='Difficulty: {0}'}"
                                         TextColor="Black" />
                                     <StackLayout Orientation="Vertical" Spacing="3">
                                         <Label
                                             FontAttributes="None"
-                                            FontSize="12"
+                                            Style="{DynamicResource BodyStyle}"
                                             Text="{Binding Description}"
                                             TextColor="Blue"
                                             VerticalOptions="FillAndExpand" />

@@ -9,6 +9,17 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Clicked="SaveWalkItem_Clicked" Text="Save" />
     </ContentPage.ToolbarItems>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Picker">
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="TextColor" Value="Red" />
+                <Setter Property="FontSize" Value="{DynamicResource CaptionStyle}" />
+                <Setter Property="BackgroundColor" Value="LightGoldenrodYellow" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
             <TableView Intent="Form">
