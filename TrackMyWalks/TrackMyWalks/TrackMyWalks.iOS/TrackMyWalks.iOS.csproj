@@ -62,6 +62,8 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CustomEffects\ButtonShadowEffect.cs" />
+    <Compile Include="CustomEffects\LabelShadowEffect.cs" />
     <Compile Include="CustomMapRenderer\CustomMapRenderer.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />

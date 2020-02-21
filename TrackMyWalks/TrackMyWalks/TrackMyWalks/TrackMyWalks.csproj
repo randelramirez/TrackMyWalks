@@ -11,12 +11,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="NewFolder\**" />
-    <EmbeddedResource Remove="NewFolder\**" />
-    <None Remove="NewFolder\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Plugin.Permissions" Version="3.0.0.12" />
     <PackageReference Include="Xam.Plugin.Geolocator" Version="4.5.0.6" />
     <PackageReference Include="Xamarin.Forms" Version="4.4.0.991265" />

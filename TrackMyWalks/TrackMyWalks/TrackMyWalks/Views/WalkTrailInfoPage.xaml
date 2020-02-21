@@ -3,9 +3,37 @@
     x:Class="TrackMyWalks.Views.WalkTrailInfoPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:customEffect="clr-namespace:TrackMyWalks.CustomEffects"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="labelTrailName" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Style" Value="{DynamicResource TitleStyle}" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+            <Style x:Key="labelTrailKilometers" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Style" Value="{DynamicResource CaptionStyle}" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+            <Style x:Key="labelTrailDifficulty" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Style" Value="{DynamicResource ListItemTextStyle}" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+            <Style x:Key="labelTrailDescription" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="Style" Value="{DynamicResource BodyStyle}" />
+                <Setter Property="TextColor" Value="MidnightBlue" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
             <StackLayout.Padding>
@@ -24,33 +52,35 @@
                         VerticalOptions="FillAndExpand" />
                     <Label
                         x:Name="TrailName"
-                        FontAttributes="Bold"
-                        FontSize="20"
-                        Text="{Binding Title}"
-                        TextColor="Black" />
+                        Style="{DynamicResource labelTrailName}"
+                        Text="{Binding Title}">
+                        <Label.Effects>
+                            <customEffect:LabelShadowEffect />
+                        </Label.Effects>
+                    </Label>
                     <Label
                         x:Name="TrailKilometers"
-                        FontSize="12"
-                        Text="{Binding Distance, StringFormat='Kilometers: {0} km'}"
-                        TextColor="Black" />
+                        Style="{StaticResource labelTrailKilometers}"
+                        Text="{Binding Distance, StringFormat='Kilometers: {0} km'}" />
                     <Label
                         x:Name="TrailDifficulty"
-                        FontSize="12"
-                        Text="{Binding Difficulty, StringFormat='Difficulty: {0}'}"
-                        TextColor="Black" />
+                        Style="{StaticResource labelTrailDifficulty}"
+                        Text="{Binding Difficulty, StringFormat='Difficulty: {0}'}" />
                     <Label
                         x:Name="TrailFullDescription"
-                        FontSize="11"
                         HorizontalOptions="FillAndExpand"
-                        Text="{Binding Description}"
-                        TextColor="Black" />
+                        Style="{StaticResource labelTrailDescription}"
+                        Text="{Binding Description}" />
                     <Button
                         x:Name="BeginTrailWalk"
                         Margin="20"
-                        BackgroundColor="#008080"
                         Clicked="BeginTrailWalk_Clicked"
-                        Text="Begin this Trail"
-                        TextColor="White" />
+                        Style="{StaticResource buttonStyle}"
+                        Text="Begin this Trail">
+                        <Button.Effects>
+                            <customEffect:ButtonShadowEffect />
+                        </Button.Effects>
+                    </Button>
                 </StackLayout>
             </ScrollView>
         </StackLayout>
