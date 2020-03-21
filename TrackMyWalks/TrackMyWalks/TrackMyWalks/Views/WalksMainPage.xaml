@@ -18,6 +18,26 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
+            <ActivityIndicator
+                x:Name="progressIndicator"
+                HorizontalOptions="CenterAndExpand"
+                IsRunning="true"
+                IsVisible="{Binding IsProcessBusy}"
+                VerticalOptions="CenterAndExpand" />
+            <Label
+                x:Name="LoadingWalkInfo"
+                FontAttributes="Bold"
+                HorizontalTextAlignment="Center"
+                IsVisible="{Binding IsProcessBusy}"
+                Text="Loading Walk Information..."
+                TextColor="Black">
+                <Label.FontSize>
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="Android, WinPhone" Value="12" />
+                        <On Platform="iOS" Value="14" />
+                    </OnPlatform>
+                </Label.FontSize>
+            </Label>
             <ListView
                 x:Name="WalkEntriesListView"
                 CachingStrategy="RetainElement"

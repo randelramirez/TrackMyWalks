@@ -27,7 +27,7 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <TableView Intent="Form">
+            <TableView x:Name="WalkDetails" Intent="Form">
                 <TableView.Root>
                     <TableSection Title="Enter Walk Trail Information">
                         <EntryCell
@@ -57,6 +57,7 @@
                             <StackLayout Margin="15,0" Orientation="Horizontal">
                                 <Label Text="Difficulty:" VerticalOptions="Center" />
                                 <Image
+                                    x:Name="DifficultyLevel"
                                     Aspect="AspectFill"
                                     HeightRequest="50"
                                     HorizontalOptions="Start"

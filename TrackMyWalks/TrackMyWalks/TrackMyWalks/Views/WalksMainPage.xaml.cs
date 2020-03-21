@@ -75,6 +75,25 @@ namespace TrackMyWalks.Views
                 // Call the Init method to initialise the ViewModel
                 await _viewModel.Init();
             }
+
+            #region loading animation - old
+            // Create a Custom Animation for our LoadingWalkInfo Label
+            // Create parent animation object
+            var parentAnimation = new Animation();
+            // Create "ZoomIn" animation and add to parent.
+            var ZoomInAnimation = new Animation(v => LoadingWalkInfo.Scale = v, 1, 2, Easing.BounceIn, null);
+            parentAnimation.Add(0, 0.5, ZoomInAnimation);
+            // Create "ZoomOut" animation and add to parent.
+            var ZoomOutAnimation = new Animation(v => LoadingWalkInfo.Scale = v, 2, 1, Easing.BounceOut, null);
+            parentAnimation.Insert(0.5, 1, ZoomOutAnimation);
+            // Commit parent animation
+            parentAnimation.Commit(this, "CustomAnimation", 16, 5000, null, null);
+            #endregion
+
+            // Create a FadingEntrance Animation to fade our WalkEntriesListView
+            WalkEntriesListView.Opacity = 0;
+            await WalkEntriesListView.FadeTo(1, 4000);
+
             // Set up and initialise the binding for our ListView
             WalkEntriesListView.SetBinding(ItemsView<Cell>.ItemsSourceProperty, new Binding("."));
             WalkEntriesListView.BindingContext = _viewModel.WalksListModel;
