@@ -48,5 +48,14 @@ namespace TrackMyWalks.Views
                 await _viewModel.Navigation.RemoveViewFromStack();
             }
         }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            // Create a SwingingEntrance Animation for our WalkDetails TableView
+            WalkDetails.RotationY = 180;
+            await WalkDetails.RotateYTo(0, 1000, Easing.BounceOut);
+            WalkDetails.AnchorX = 0.5;
+        }
     }
 }
