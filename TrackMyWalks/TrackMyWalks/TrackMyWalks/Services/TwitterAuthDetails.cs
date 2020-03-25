@@ -12,9 +12,9 @@ namespace TrackMyWalks.Services
         public static bool isLoggedIn => !string.IsNullOrWhiteSpace(AuthToken);
 
         // Declare and define your Twitter Consumer Key
-        public static string ConsumerKey => "Qj5F7ZPgXPvPcolclRrJPN4AN";
+        public static string ConsumerKey => "";
 
-        public static string ConsumerSecret => "jgsJqNcFXMcnRFdPbwTiwer7qPjUz02chs1UNaAQiK17Zugmzw";
+        public static string ConsumerSecret => "";
 
         // Declare a property to get our Twitter User Details
         static JObject _userDetails;
