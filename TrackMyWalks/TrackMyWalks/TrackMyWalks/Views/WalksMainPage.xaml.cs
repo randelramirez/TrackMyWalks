@@ -76,6 +76,12 @@ namespace TrackMyWalks.Views
                 await _viewModel.Init();
             }
 
+            if (!TwitterAuthDetails.isLoggedIn)
+            {
+                // We need to Navigate and display our Twitter Sign In Page
+                await _viewModel.Navigation.NavigateTo<TwitterSignInPageViewModel>();
+            }
+
             #region loading animation - old
             // Create a Custom Animation for our LoadingWalkInfo Label
             // Create parent animation object

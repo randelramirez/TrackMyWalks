@@ -64,7 +64,8 @@
   <ItemGroup>
     <Compile Include="CustomEffects\ButtonShadowEffect.cs" />
     <Compile Include="CustomEffects\LabelShadowEffect.cs" />
-    <Compile Include="CustomMapRenderer\CustomMapRenderer.cs" />
+    <Compile Include="CustomRenderer\CustomMapRenderer.cs" />
+    <Compile Include="CustomRenderer\TwitterSignInPageRenderer.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <None Include="Entitlements.plist" />

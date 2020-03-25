@@ -6,7 +6,7 @@ using CoreLocation;
 using Foundation;
 using MapKit;
 using ObjCRuntime;
-using TrackMyWalks.iOS.CustomMapRenderer;
+using TrackMyWalks.iOS.CustomRenderer;
 using TrackMyWalks.Views.MapOverlay;
 using UIKit;
 using Xamarin.Forms;
@@ -14,7 +14,7 @@ using Xamarin.Forms.Maps.iOS;
 using Xamarin.Forms.Platform.iOS;
 
 [assembly: ExportRenderer(typeof(CustomMapOverlay), typeof(CustomMapRenderer))]
-namespace TrackMyWalks.iOS.CustomMapRenderer
+namespace TrackMyWalks.iOS.CustomRenderer
 {
     public class CustomMapRenderer : MapRenderer
     {

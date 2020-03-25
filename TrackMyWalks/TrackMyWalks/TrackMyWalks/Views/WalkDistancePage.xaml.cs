@@ -21,9 +21,16 @@ namespace TrackMyWalks.Views
 
         Task<Plugin.Geolocator.Abstractions.Position> origPosition;
 
+        // Create a TwitterObject variable that will contain an instance to
+        // our TwitterWebService class
+        TwitterWebService TwitterObject;
+
         public WalkDistancePage()
         {
             InitializeComponent();
+
+            // Create an instance to our TwitterWebService class
+            TwitterObject = new TwitterWebService();
 
             // Update the Title and Initialise our BindingContext for the Page
             Title = "Distance Travelled Information";
@@ -94,6 +101,83 @@ namespace TrackMyWalks.Views
             // Display our Custom Map for the detected device
             // Platform
             Content = customMap;
+        }
+
+        // Instance method that presents the user with additional options
+        public async void OptionsButton_Clicked(object sender, EventArgs e)
+        {
+            // Display our Action Sheet with a list of choices for the user to choose
+            var action = await DisplayActionSheet("What would you like to do?",
+            "Cancel", null,
+            "Show Twitter Profile",
+            "Post Twitter Message",
+            "End Current Trail");
+            switch (action)
+            {
+                case "Show Twitter Profile":
+                    ShowTwitterProfile();
+                    break;
+                case "Post Twitter Message":
+                    PostTwitterMessage();
+                    break;
+                case "End Current Trail":
+                    EndTrailButton_Clicked(sender, e);
+                    break;
+            }
+        }
+
+        public async void ShowTwitterProfile()
+        {
+            // Call our Instance method to get the user's Twitter Profile Details
+            var ProfileInfo = await TwitterObject.GetTwitterProfile(TwitterAuthDetails.AuthAccount);
+
+            // Construct our message to display within an alert dialog
+            var profileDetails = new StringBuilder();
+            profileDetails.AppendFormat("\nId: {0}", ProfileInfo.GetValue("id"));
+            profileDetails.AppendFormat("\nName: {0}", ProfileInfo.GetValue("name"));
+            profileDetails.AppendFormat("\nScreen Name: {0}", ProfileInfo.GetValue("screen_name"));
+            profileDetails.AppendFormat("\nLocation: {0}", ProfileInfo.GetValue("location"));
+            profileDetails.AppendFormat("\nDescription: {0}", ProfileInfo.GetValue("description"));
+            profileDetails.AppendFormat("\nFriends: {0}", ProfileInfo.GetValue("friends_count"));
+            profileDetails.AppendFormat("\nFollowers: {0}", ProfileInfo.GetValue("followers_count"));
+            profileDetails.AppendFormat("\nFavourites: {0}", ProfileInfo.GetValue("favourites_count"));
+            profileDetails.AppendFormat("\nurl: {0}", ProfileInfo.GetValue("url"));
+
+            // Display an alert dialog with the user's profile details
+            await DisplayAlert("Twitter Profile Details", profileDetails.ToString(), "OK");
+        }
+
+        // Instance method to allow the user to post a message to their Twitter Feed
+        public async void PostTwitterMessage()
+        {
+            // Construct our message to post to the users Twitter Feed
+            var sbMessage = new StringBuilder();
+            sbMessage.AppendLine("Track My Walks - Trail Details");
+            sbMessage.AppendFormat("\nTitle: {0}", App.SelectedItem.Title);
+            sbMessage.AppendFormat("\nDistance: {0}", App.SelectedItem.Distance);
+            sbMessage.AppendFormat("\nDifficulty: {0}", App.SelectedItem.Difficulty);
+            sbMessage.AppendFormat("\nImageURL: {0}", App.SelectedItem.ImageUrl);
+
+            // Call our Instance method to Tweet the message to the users twitter page
+            // We need to truncate our string so that it is within the Twitter allowable message constraints
+            var tweet = sbMessage.ToString().Substring(0, 128);
+            var response = TwitterObject.TweetMessage(tweet, TwitterAuthDetails.AuthAccount);
+
+            // Display an alert dialog to let the user know their message has been posted.
+            await DisplayAlert("Posted to Twitter", "Trail Information has been posted.", "OK");
+        }
+
+        // Instance method to terminate the current Trail
+        public async void EndTrailButton_Clicked(object sender, EventArgs e)
+        {
+            // Initialise our Selected Item property
+            App.SelectedItem = null;
+
+            // Stop listening for location updates prior to navigating
+            _viewModel.OnStopUpdate();
+
+            // Navigate back to the Track My Walks Listing Page
+            await _viewModel.Navigation.BackToMainPage();
         }
 
         // Instance method to handle updating the UI whenever the
