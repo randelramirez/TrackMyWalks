@@ -10,14 +10,14 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
-using TrackMyWalks.Droid.CustomMapRenderer;
+using TrackMyWalks.Droid.CustomRenderer;
 using TrackMyWalks.Views.MapOverlay;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 using Xamarin.Forms.Maps.Android;
 
 [assembly: ExportRenderer(typeof(CustomMapOverlay), typeof(CustomMapRenderer))]
-namespace TrackMyWalks.Droid.CustomMapRenderer
+namespace TrackMyWalks.Droid.CustomRenderer
 {
     public class CustomMapRenderer : MapRenderer
     {

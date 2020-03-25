@@ -8,6 +8,9 @@
     xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Clicked="OptionsButton_Clicked" Text="Options" />
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
             <ScrollView Padding="2,0,2,2">

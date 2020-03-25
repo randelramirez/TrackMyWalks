@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using TrackMyWalks.Models;
 using TrackMyWalks.Services;
 using TrackMyWalks.ViewModels;
@@ -44,14 +45,11 @@ namespace TrackMyWalks
             // Set the current main page to our Navigation Service
             NavService.XFNavigation = MainPage.Navigation;
             // Register each of our View Models on our Navigation Stack
-            NavService.RegisterViewMapping(typeof(WalksMainPageViewModel),
-            typeof(WalksMainPage));
-            NavService.RegisterViewMapping(typeof(WalkEntryPageViewModel),
-            typeof(WalkEntryPage));
-            NavService.RegisterViewMapping(typeof(WalkTrailInfoPageViewModel),
-            typeof(WalkTrailInfoPage));
-            NavService.RegisterViewMapping(typeof(WalkDistancePageViewModel),
-            typeof(WalkDistancePage));
+            NavService.RegisterViewMapping(typeof(WalksMainPageViewModel), typeof(WalksMainPage));
+            NavService.RegisterViewMapping(typeof(WalkEntryPageViewModel), typeof(WalkEntryPage));
+            NavService.RegisterViewMapping(typeof(WalkTrailInfoPageViewModel), typeof(WalkTrailInfoPage));
+            NavService.RegisterViewMapping(typeof(WalkDistancePageViewModel), typeof(WalkDistancePage));
+            NavService.RegisterViewMapping(typeof(TwitterSignInPageViewModel), typeof(TwitterSignInPage));
         }
 
         protected override void OnSleep()
@@ -61,5 +59,18 @@ namespace TrackMyWalks
         protected override void OnResume()
         {
         }
+
+        #region Twitter Sign In Page Property and Instance methods to remove and Navigate(Android Only)
+        // Action property method to remove our TwitterSignInPage from
+        // the NavigationStack
+        public static Action RemoveTwitterSignInPage =>
+            new Action(() => NavService.XFNavigation.PopAsync());
+
+        // Navigate to our WalksMainPage, once we have successfully signed in
+        public async static Task NavigateToWalksMainPage()
+        {
+            await NavService.XFNavigation.PushAsync(new WalksMainPage());
+        }
+        #endregion
     }
 }
